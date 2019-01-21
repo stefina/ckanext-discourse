@@ -6,6 +6,7 @@ import sys
 import re
 import pylons
 import json
+import ckan.plugins as p
 from ckan.plugins.toolkit import asbool
 from ckan.common import g
 from ckanext.discourse.interfaces import IDiscourse
@@ -95,7 +96,7 @@ class DiscoursePlugin(plugins.SingletonPlugin):
             cls.active_conversations = 0
 
             for topic in topics_dict:
-                topic_title = topic['title'][:-len(g.site_title)].strip() if topic['title'].endswith(g.site_title) else topic['title']
+                topic_title = topic['title']
                 if topic['posts_count'] > 1:
                     cls.active_conversations += 1
                     topic_lookup_dict[topic_title] = topic['posts_count']
@@ -108,7 +109,7 @@ class DiscoursePlugin(plugins.SingletonPlugin):
                 topics_dict = category_dict['topic_list']['topics']
 
                 for topic in topics_dict:
-                    topic_title = topic['title'][:-len(g.site_title)].strip() if topic['title'].endswith(g.site_title) else topic['title']
+                    topic_title = topic['title']
                     if topic['posts_count'] > 1:
                         cls.active_conversations += 1
                         topic_lookup_dict[topic_title] = topic['posts_count']
