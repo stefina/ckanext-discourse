@@ -37,7 +37,7 @@ To create a new user, go to "Admin" > "Users" > "Send Invites" and enter an emai
 
         . /usr/lib/ckan/default/bin/activate
         cd /usr/lib/ckan/default/src
-        git clone https://github.com/ontodia/ckanext-discourse
+        git clone https://github.com/jqnatividad/ckanext-discourse
         cd ckanext-discourse
         python setup.py develop
 
@@ -45,7 +45,7 @@ To create a new user, go to "Admin" > "Users" > "Send Invites" and enter an emai
 
         ckan.plugins = ... discourse
         
-    If discourse embedding is desired for ckanext-showcase and ckanext-datarequests, be sure to add the discourse plugin after those plugins (i.e. ckan.plugins = ... showcase datarequests discourse) 
+    If discourse embedding is desired for ckanext-showcase and ckanext-datarequests, be sure to add the discourse plugin **before** those plugins (i.e. ckan.plugins = ... discourse showcase datarequests), so it can properly extend their HTML templates with the required discourse embed code.  
 
 3. Add the following options as well:
 
