@@ -4,7 +4,6 @@ import requests
 import time
 import sys
 import re
-import pylons
 import json
 import ckan.plugins as p
 from ckan.plugins.toolkit import asbool
@@ -158,7 +157,7 @@ class DiscoursePlugin(plugins.SingletonPlugin):
             discourse_topic = canonical_url
 
         # ignore locale settings
-        lang_code = pylons.request.environ['CKAN_LANG']
+        lang_code = toolkit.request.environ['CKAN_LANG']
 
         monolingualURL = re.match('(http://.*?/)('+ lang_code +')/(.*)$', discourse_topic)
         if monolingualURL is not None:
